@@ -51,10 +51,11 @@
 npm install        # установка зависимостей
 npm run dev        # запуск dev-сервера (http://localhost:5173)
 npm run build      # проверка типов (tsc -b) + продакшн-сборка в dist/
-npm run preview    # локальный просмотр продакшн-сборки
+npm run preview    # локальный просмотр сборки через wrangler dev
 npm run lint       # проверка ESLint
 npm test           # запуск Vitest один раз
 npm run test:watch # Vitest в режиме watch
+npm run deploy     # сборка + деплой на Cloudflare Workers (нужен wrangler login)
 ```
 
 ## Хранение данных и его ограничения
@@ -81,6 +82,16 @@ src/
   App.tsx                  # состояние приложения и связь UI с хранилищем
   index.css                # дизайн-система TaskFlow, включая адаптивные брейкпоинты
 ```
+
+## Деплой
+
+Приложение размещено на Cloudflare Workers (статические ассеты, ранее — Cloudflare Pages):
+
+- **Продакшн:** https://tracktask.varangian7221.workers.dev
+- **Конфигурация:** `wrangler.jsonc` (+ плагин `@cloudflare/vite-plugin` в `vite.config.ts`)
+- **Публикация новой версии:** `npm run deploy` (после `npx wrangler login` при первой авторизации)
+
+Приложение полностью статическое: серверная логика не используется, данные хранятся в localStorage браузера посетителя.
 
 ## Известные ограничения и не реализованные функции
 
