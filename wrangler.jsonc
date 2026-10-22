@@ -5,6 +5,12 @@
   "observability": {
     "enabled": true
   },
+  "routes": [
+    {
+      "pattern": "tracktask.okorsh.site",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "not_found_handling": "single-page-application"
   }
